@@ -1,0 +1,32 @@
+server:
+    port: 9028
+    
+spring:
+    application:
+        name: Authentication Server
+        
+    h2:
+       console:
+           enabled: true
+
+    datasource:
+        driver-class-name: org.hsqldb.jdbcDriver
+        url: jdbc:hsqldb:mem:testdb
+        username: sa
+        password:
+
+    jpa:
+        database-platform: org.hibernate.dialect.H2Dialect
+        
+    jackson:
+        serialization:
+             INDENT_OUTPUT: true
+        
+    security:
+        user:
+           name: client
+           
+           password: client
+    
+token:
+    validity: 3600

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+   <property name="LOG_DIR" value="../../audit/auth" />
+<!--    <property name="LOG_DIR" value="./log" /> -->
+   <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+      <!-- Log message format -->
+      <encoder>
+		<pattern>[E:%d{yyyy-MM-dd HH:mm:ss.SSS}] \(%-30.30F:%-4.4L\) [%thread] [%-5level]  %msg%n</pattern>
+      </encoder>
+   </appender>
+   <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+      <!-- Name of the file where the log messages are written -->
+      <file>${LOG_DIR}/authenticationserver.log</file>
+      <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+         <!-- File rollover -->
+         <fileNamePattern>${LOG_DIR}/authenticationserver.log.%i</fileNamePattern>
+         <minIndex>1</minIndex>
+         <maxIndex>10</maxIndex>
+      </rollingPolicy>
+      <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+         <maxFileSize>40MB</maxFileSize>
+      </triggeringPolicy>
+      <encoder>
+         <pattern>[E:%d{yyyy-MM-dd HH:mm:ss.SSS}] \(%-30.30F:%-4.4L\) [%thread] [%-5level]  %msg%n</pattern>
+      </encoder>
+   </appender>
+   <!-- Setting the root level of logging to INFO -->
+   <root level="INFO">
+      <appender-ref ref="STDOUT" />
+      <appender-ref ref="FILE" />
+   </root>
+</configuration>
